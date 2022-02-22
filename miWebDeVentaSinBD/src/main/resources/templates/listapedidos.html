@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"  lang="es">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Mis pedidos</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="/css/pedidos.css"></link>
+    </head>
+    <body>
+                <h1>Mis pedidos</h1>
+		            <div id="ped">
+		            <h3>Bienvenid@ <h3 th:text="${usuario.getNombre()}"></h3></h3>
+		            
+						<table>
+							<tr>
+								<th scope="col">Ref pedido</th>
+								<th scope="col">Dirección de envío</th>
+								<th scope="col">Teléfono</th>
+								<th scope="col">Email</th>
+								<th scope="col">Tipo de envio</th>
+								<th scope="col">Fecha pedido</th>
+							</tr>
+							<tr th:each="pedidos : ${listaPedidos}">
+								<td th:text="${pedidos.referencia}"/>
+								<td th:text="${pedidos.direccionEnvio}"/>
+								<td th:text="${pedidos.telefono}"/>
+								<td th:text="${pedidos.email}"/>
+								<td th:text="${pedidos.envio}"/>
+								<td th:text="${pedidos.formatoFecha()}"/>
+								<td><button class="boton"><a th:href="@{/pedido/edicion/{ref}(ref=${pedidos.referencia})}">Editar</a></button></td>
+								<td><button class="boton"><a th:href="@{/pedido/borrado/{ref}(ref=${pedidos.referencia})}">Borrar</a></button></td>
+							</tr>
+						</table><br><br>
+						<div class="cerrar">
+							<button class="boton" type="submit"><a href="/cerrar">Cerrar Sesión</a></button>
+							<button class="boton" type="submit"><a href="/opciones">Ir a opciones</a></button>
+		            	</div>
+		            </div>
+    </body>
+</html>
