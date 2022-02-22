@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"  lang="es">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Editar pedidos</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="/css/pedidos.css"></link>
+    </head>
+    <body>
+                <h1>Editar mi pedido</h1>
+                <form method="post" th:action="@{/edicion/submit/{ref}(ref=${pedido.referencia})}" id="fo">
+                <h3 th:text="Referencia + ${pedido.referencia}"></h3>
+	                <table>
+						<tr>
+							<th scope="col">NOMBRE PRODUCTO</th>
+							<th scope="col">CANTIDAD</th>
+						</tr>
+						<tr th:each="producto : ${cantPro}">
+							<td th:text="${producto.key.nombre}"></td>
+				        	<td ><input class="edit" type="number" name="cantidad" min="0" th:value="${producto.value}"/></td>
+						</tr>
+					</table>
+				 <h3>Información del envio</h3>
+			     <table>
+			     	<tr>
+			     		<th scope="col">Teléfono</th>
+			     		<th scope="col">Dirección envio</th>
+			     		<th scope="col">Email</th>
+			     		<th scope="col">Envio</th>
+			     	</tr>
+			     	<tr>
+			     		<td><input class="edit" type="text" name="tele" th:value="${pedido.telefono}"/></td>
+				     	<td><input class="edit" type="text" name="direc" th:value="${pedido.direccionEnvio}"/></td>
+				     	<td><input class="edit" type="text" name="email" th:value="${pedido.email}"/></td>
+						<td>
+						Ordinario<input type="radio" name="envio" value="oridinario"/>
+						Certificado<input type="radio" name="envio" value="certificado" checked="checked"/>
+						</td>
+			     	</tr>
+			     </table><br><br>
+			     <div class="cerrar">
+				     <button type="submit" class="boton">Modificar datos</button>
+				     <button class="boton" type="submit"><a href="/opciones">Ir a opciones</a></button>
+				     <button class="boton" type="submit"><a href="/cerrar">Cerrar Sesión</a></button>
+				 </div>
+				</form>
+    </body>
+</html>
