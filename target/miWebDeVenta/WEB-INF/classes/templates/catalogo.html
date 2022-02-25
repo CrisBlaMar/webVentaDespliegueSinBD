@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Catálogo Prado</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="../css/pedidos.css"></link>
+    </head>
+    <body>
+       <h1>Catálogo Prado</h1>
+       <div id="catalogo">
+       <form th:action="@{/catalogo/submit}" method="post">
+			<table>
+				<tr>
+					<th scope="col">Id</th>
+					<th scope="col">Nombre</th>
+					<th scope="col">Precio</th>
+					<th scope="col">Cantidad</th>
+				</tr>
+				<tr th:each="producto : ${listaProductos}">
+					<td th:text="${producto.id}"/>
+					<td th:text="${producto.nombre}"/>
+					<td th:text="${producto.precio}+ €"></td>
+					<td><input type="number" name="cantidad" class="cantidad" min="0" value="0"/></td>
+				</tr>
+			</table><br><br>
+			<div class="cerrar">
+				<button class="boton" type="submit"><a href="../cerrar">Cerrar Sesión</a></button>
+				<button type="submit" class="boton">Añadir al carrito</button>
+			</div>
+		</form>
+		</div>
+    </body>
+</html>
