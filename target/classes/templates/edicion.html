@@ -6,11 +6,11 @@
         <title>Editar pedidos</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="/css/pedidos.css"></link>
+        <link rel="stylesheet" href="../css/pedidos.css"></link>
     </head>
     <body>
                 <h1>Editar mi pedido</h1>
-                <form method="post" th:action="@{/edicion/submit/{ref}(ref=${pedido.referencia})}" id="fo">
+                <form method="post" th:action="@{/edicion/submit/{ref}(ref=${pedido.referencia})}">
                 <h3 th:text="Referencia + ${pedido.referencia}"></h3>
 	                <table>
 						<tr>
@@ -42,8 +42,8 @@
 			     </table><br><br>
 			     <div class="cerrar">
 				     <button type="submit" class="boton">Modificar datos</button>
-				     <button class="boton" type="submit"><a href="/opciones">Ir a opciones</a></button>
-				     <button class="boton" type="submit"><a href="/cerrar">Cerrar Sesión</a></button>
+				     <button class="boton" type="submit"><a href="../opciones">Ir a opciones</a></button>
+				     <button class="boton" type="submit"><a href="../cerrar">Cerrar Sesión</a></button>
 				 </div>
 				</form>
     </body>

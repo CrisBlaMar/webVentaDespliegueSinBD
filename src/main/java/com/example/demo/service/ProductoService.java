@@ -29,7 +29,6 @@ public class ProductoService {
 				new Producto("Diadema de amapolas", 10.00)));
 	}
 	
-	
 	/**
 	 * Método para devolver todos los productos
 	 */
