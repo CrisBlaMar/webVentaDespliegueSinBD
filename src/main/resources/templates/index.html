@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Bienvenido a Lila Lavanda</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="/css/login.css"></link>
+    </head>
+    <body>
+       <div id="contenedor">
+
+            <div id="header">
+                <h1>Lila Lavanda</h1>
+				<h3>-Decoración y diseño floral-</h3>
+            </div>
+                
+            <div id="form">
+
+                <form id="addUser" method="POST" action="#" th:object="${usuario}" th:action=" @{/index/submit}">
+                    
+                    <input placeholder="Usuario..." type="text" th:field="*{usuario}">
+                    <span th:if="${#fields.hasErrors('usuario')}" th:errors="*{usuario}" id="usuario-error">Errores</span> 
+                    <br><br>
+            
+                    
+                    <input placeholder="Contraseña..." type="password" th:field="*{contrasenia}">
+                    <span th:if="${#fields.hasErrors('contrasenia')}" th:errors="*{contrasenia}" id="contrasenia-error">Errores</span> 
+                    <br><br>
+                    
+
+                    <div>
+                        <button class ="boton" type="submit">Entrar</button>
+                    </div>
+
+                </form>
+
+            </div>
+
+            
+
+
+        </div>
+    </body>
+</html>

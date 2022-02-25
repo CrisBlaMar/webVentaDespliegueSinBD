@@ -37,7 +37,7 @@ public class ControladorLogin {
 	 * Guardamos en variables los redirect y el usuario, ya que SonarLint daba fallo
 	 */
 	private static String usuario = "usuario";
-	private static String rediLogin = "redirect:/login";
+	private static String rediIndex = "redirect:/index";
 	
 	private static String rediListaPed = "redirect:/listapedidos";
 	
@@ -57,10 +57,10 @@ public class ControladorLogin {
 	/**
 	 * Creamos un usuario vacio al iniciar la aplicación
 	 */
-	 @GetMapping({"/", "/login"})
+	 @GetMapping({"/", "/index"})
 	 public String newLoginUsuario(Model model) {
 		 model.addAttribute(usuario, new Usuario());
-		 return "login";
+		 return "index";
 		 
 	 }
 	 
@@ -69,10 +69,10 @@ public class ControladorLogin {
 	 /**
 	  * Cuando no hay usuario nos redirige a la página del login nuevamente.
 	  */
-	 @PostMapping("/login/submit")
+	 @PostMapping("/index/submit")
 	 public String usuValido(@Valid @ModelAttribute("usuario") Usuario usu, Model model, BindingResult error) {
 		 if(!usuarioService.hayUsuario(usu.getUsuario(), usu.getContrasenia()) || error.hasErrors()) {
-			 return "login";
+			 return "index";
 		 }else {
 			 /**
 			  * Cuando el usuario si exista con su contraseña, nos guardará en sesión el usuario, hay que llamar al service usuario ya que si no, me sale error.
@@ -96,7 +96,7 @@ public class ControladorLogin {
 	 @GetMapping({"/cerrar"})
 		public String cerrarSesion() {
 			this.sesion.invalidate();
-			return rediLogin;
+			return rediIndex;
 		}
 	 
 	 /**
@@ -107,7 +107,7 @@ public class ControladorLogin {
 		public String listapedidos(Model model) {
 		 	if(this.sesion.getAttribute(usuario)==null) {
 		 		
-		 		return rediLogin;
+		 		return rediIndex;
 		 		
 		 	}else {
 		 		
@@ -130,7 +130,7 @@ public class ControladorLogin {
 	 @GetMapping({"/catalogo"})
 		public String catalogo(Model model) {
 		 if(this.sesion.getAttribute(usuario)==null) {
-		 		return rediLogin;
+		 		return rediIndex;
 		 }else {
 			 model.addAttribute("listaProductos", productoService.getAllProducts());
 			 return "/catalogo";
@@ -163,7 +163,7 @@ public class ControladorLogin {
 			}
 		 }
 		 
-		 return rediLogin;
+		 return rediIndex;
 	 }
 	 
 	 /**
@@ -174,7 +174,7 @@ public class ControladorLogin {
 			 , @RequestParam(required=false, value="email") String email
 			 , @RequestParam(required=false, value="tele") String tele) {
 		 if(sesion.getAttribute(usuario) == null){
-			 return rediLogin;
+			 return rediIndex;
 		 }
 		 
 		 else {
@@ -196,7 +196,7 @@ public class ControladorLogin {
 	 @GetMapping("/pedido/edicion/{ref}")
 	 public String editarPedido(Model model, @PathVariable("ref") int ref) {
 		 if(sesion.getAttribute(usuario) == null){
-			 return rediLogin;
+			 return rediIndex;
 		 }else {
 			 Usuario usu = (Usuario) sesion.getAttribute(usuario);
 			 
@@ -220,7 +220,7 @@ public class ControladorLogin {
 			 @RequestParam (required=false, value="envio") String envio, @RequestParam (required=false, value="email") String email, Model model) {
 		 
 		 if(sesion.getAttribute(usuario) == null){
-			 return rediLogin;
+			 return rediIndex;
 		 }else {
 			 Usuario usu = (Usuario) sesion.getAttribute(usuario);
 			 
@@ -242,7 +242,7 @@ public class ControladorLogin {
 	 @GetMapping("/pedido/borrado/{ref}")
 	 public String eliminarPedido (Model model, @PathVariable int ref) {
 		 if(sesion.getAttribute(usuario) == null){
-			 return rediLogin;
+			 return rediIndex;
 		 }else {
 			 Usuario usu = (Usuario) sesion.getAttribute(usuario);
 			 

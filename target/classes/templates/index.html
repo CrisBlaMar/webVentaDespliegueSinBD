@@ -18,7 +18,7 @@
                 
             <div id="form">
 
-                <form id="addUser" method="POST" action="#" th:object="${usuario}" th:action=" @{/login/submit}">
+                <form id="addUser" method="POST" action="#" th:object="${usuario}" th:action=" @{/index/submit}">
                     
                     <input placeholder="Usuario..." type="text" th:field="*{usuario}">
                     <span th:if="${#fields.hasErrors('usuario')}" th:errors="*{usuario}" id="usuario-error">Errores</span> 
