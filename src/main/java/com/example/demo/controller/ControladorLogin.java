@@ -58,7 +58,7 @@ public class ControladorLogin {
 	/**
 	 * Creamos un usuario vacio al iniciar la aplicación
 	 */
-	 @GetMapping({"/", "/login"})
+	 @GetMapping({"/login"})
 	 public String newLoginUsuario(Model model) {
 		 model.addAttribute(usuario, new Usuario());
 		 return "login";
